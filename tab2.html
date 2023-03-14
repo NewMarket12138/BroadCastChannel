@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>gb---message</title>
+	</head>
+	<body>
+        <button onclick="sendMessageByTab1()">给tab1发送消息</button>
+		<script>
+            // 创建广播实例
+			const gb = new BroadcastChannel('AlienZHOU');
+
+            // 发送消息
+            const sendMessageByTab1 = () => {
+                const data = {
+                    type: 'MC:PatientInfo',
+                    info: {
+                        patientName: 'NewMarket12138',
+                        patientSex: 'MALE'
+                    }
+                };
+                gb.postMessage(`我现在正在给gb---tab页发送消息,${JSON.stringify(data)}`);
+            };
+
+            // 监听消息变化
+			gb.onmessage = message => {
+				console.log('message--->>>gb', message);
+			};
+		</script>
+	</body>
+</html>
